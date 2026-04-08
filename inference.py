@@ -1,17 +1,35 @@
-from env import SupportEnv, Action
+import os
+from env import Env, Action
+from openai import OpenAI
 
-env = SupportEnv()
-obs = env.reset()
+API_BASE_URL = os.getenv("API_BASE_URL", "")
+MODEL_NAME = os.getenv("MODEL_NAME", "")
+HF_TOKEN = os.getenv("HF_TOKEN", "")
 
-total = 0
+client = OpenAI(
+    base_url=API_BASE_URL,
+    api_key=HF_TOKEN
+)
 
-while True:
-    action = Action(category="Billing", priority="High")
+def run():
+    env = Env()
+    obs = env.reset()
+    total_reward = 0
 
-    obs, reward, done, _ = env.step(action)
-    total += reward
+    while True:
+        action = Action(category="Billing", priority="High")
 
-    if done:
-        break
+        obs, reward, done, _ = env.step(action)
+        total_reward += reward
 
-print("Score:", total)
+        if done:
+            break
+
+    return total_reward
+
+
+if __name__ == "__main__":
+    print("START")
+    score = run()
+    print("SCORE:", score)
+    print("END")
