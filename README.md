@@ -4,18 +4,21 @@ emoji: 🤖
 colorFrom: blue
 colorTo: green
 sdk: docker
-app_file: run.py
+app_file: inference.py
 pinned: false
 ---
 
 # AI Customer Support Triage Environment
 
+## Overview
 This project simulates a real-world customer support workflow.
 
-## Agent Capabilities
-- Classifies user issues
-- Assigns priority
-- Handles triage tasks
+## Action Space
+- category: Billing / Technical / Account
+- priority: High / Low
+
+## Observation Space
+- text: user complaint
 
 ## Tasks
 - Easy: classification
@@ -23,7 +26,10 @@ This project simulates a real-world customer support workflow.
 - Hard: full triage
 
 ## Reward
-Score between 0 and 1 based on correctness.
+Score between 0 and 1 with penalties for incorrect actions.
+
+## Baseline
+Simple heuristic agent using inference.py
 
 ## Run
-python run.py
+python inference.py
