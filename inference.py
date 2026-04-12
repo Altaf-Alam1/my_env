@@ -5,10 +5,9 @@ from openai import OpenAI
 # Required env vars
 API_BASE_URL = os.getenv("API_BASE_URL", "https://api.openai.com/v1")
 MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4.1-mini")
-HF_TOKEN = os.getenv("HF_TOKEN")
+HF_TOKEN = os.getenv("HF_TOKEN", "dummy-token")
 
-if HF_TOKEN is None:
-    raise ValueError("HF_TOKEN is required")
+HF_TOKEN = os.getenv("HF_TOKEN", "dummy-token")
 
 client = OpenAI(
     base_url=API_BASE_URL,
