@@ -1,0 +1,11 @@
+[project]
+name = "support-triage-env"
+version = "0.1.0"
+description = "Customer support triage OpenEnv environment"
+authors = [{ name = "Altaf Alam" }]
+dependencies = [
+    "pydantic",
+    "fastapi",
+    "uvicorn",
+    "openai"
+]
